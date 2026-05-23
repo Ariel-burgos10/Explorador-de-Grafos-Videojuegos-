@@ -1,0 +1,19 @@
+{
+  "nodes": [
+    "Start",
+    "A",
+    "B",
+    "C",
+    "D",
+    "Finish"
+  ],
+
+  "edges": [
+    ["Start", "A"],
+    ["Start", "B"],
+    ["A", "C"],
+    ["B", "D"],
+    ["C", "Finish"],
+    ["D", "Finish"]
+  ]
+}

@@ -5,12 +5,10 @@ def main():
 
     grafo = Grafo()
 
-    # Cargar grafo desde archivo
-    grafo.load_from_json("../data/grafo.json")
-
-    # Mostrar estructura del grafo
+    grafo.load_from_json("grafo.json")
     grafo.show_graph()
 
+    grafo.bfs("Start", "Finish")
 
-if __name__ == "__main__":
-    main()
+
+main()
