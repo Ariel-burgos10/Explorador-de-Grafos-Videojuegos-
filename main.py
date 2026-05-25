@@ -10,5 +10,6 @@ def main():
 
     grafo.bfs("Start", "Finish")
 
+    grafo.dfs("Start", "Finish")
 
 main()

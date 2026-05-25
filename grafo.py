@@ -126,3 +126,47 @@ class Grafo:
         print("\nNo existe camino")
 
         return None
+    
+
+
+    def dfs(self, start, finish):
+        """
+        Implementación de Búsqueda en Profundidad (DFS).
+        Retorna el orden de visita y el camino encontrado.
+        """
+        visitados = set()
+        # La pila guarda tuplas:
+        pila = [(start, [start])]
+        orden_visita = []
+
+        while pila:
+            # LIFO: Last In, First Out (Sacamos el último elemento añadido)
+            nodo_actual, camino = pila.pop()
+
+            if nodo_actual not in visitados:
+                visitados.add(nodo_actual)
+                orden_visita.append(nodo_actual)
+
+                # Si encontramos el objetivo, mostramos los resultados y terminamos
+                if nodo_actual == finish:
+                    print("\n" + "="*40)
+                    print("RESULTADOS DFS (Búsqueda en Profundidad)")
+                    print("="*40)
+                    print(f"Orden de exploración: {orden_visita}")
+                    print(f"Camino encontrado: {' -> '.join(camino)}")
+                    print(f"Número de aristas (pasos): {len(camino) - 1}")
+                    print("NOTA: Este camino encontrado por DFS puede NO ser el más corto.")
+                    print("="*40 + "\n")
+                    return orden_visita, camino
+
+                # Buscamos los vecinos. 
+                # Usamos reversed() para que el comportamiento en la pila siga el orden lógico 
+                vecinos = self.adj_list.get(nodo_actual, [])
+                for vecino in reversed(vecinos):
+                    if vecino not in visitados:
+                        # Añadimos a la pila el vecino y el nuevo camino actualizado
+                        pila.append((vecino, camino + [vecino]))
+
+        # Si la pila se vacía y no encontramos el 'finish'
+        print("\nDFS: No se encontró ningún camino hacia el destino.")
+        return orden_visita, None
